@@ -2,16 +2,19 @@ package com.bojaruniec.carrental.rents;
 
 import com.bojaruniec.carrental.cars.Car;
 import com.bojaruniec.carrental.users.User;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
+@Builder
 @Entity
 @Table(name = "rents")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Rent {
 
     @Id
@@ -21,9 +24,8 @@ public class Rent {
     @OneToOne
     @JoinColumn(name = "car_id")
     private Car car;
-    @OneToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private long userId;
     @Column(name = "date_of_rent")
     private Date dateOfRent;
     @Column(name = "date_of_return")

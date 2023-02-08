@@ -7,6 +7,7 @@ import lombok.*;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Builder
@@ -22,7 +23,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "car_id")
-    private Long id;
+    private long id;
     @Column(name = "license_plate")
     private String licensePlate;
     @OneToOne
@@ -35,5 +36,15 @@ public class Car {
         this.specification = specification;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car car)) return false;
+        return getId() == car.getId() && getLicensePlate().equals(car.getLicensePlate()) && getSpecification().equals(car.getSpecification());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getLicensePlate(), getSpecification());
+    }
 }

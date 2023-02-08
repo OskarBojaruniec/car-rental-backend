@@ -19,8 +19,13 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public List<Car> getListOfCars(HttpServletResponse response) {
+    public List<Car> getListOfCars() {
         return carService.getListOfCars();
+    }
+
+    @GetMapping("/cars/specifications/{id}")
+    public List<Car> getListOfCarsBySpecification(@PathVariable("id") long specId) {
+        return carService.getListOfCarsBySpecification(specId);
     }
 
     @PostMapping("/cars")

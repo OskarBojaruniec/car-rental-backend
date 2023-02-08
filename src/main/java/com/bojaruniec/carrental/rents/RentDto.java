@@ -11,7 +11,7 @@ import java.sql.Date;
 @Setter
 public class RentDto {
 
-    private long carId;
+    private long specId;
     private long userId;
     private Date dateOfRent;
     private Date dateOfReturn;
