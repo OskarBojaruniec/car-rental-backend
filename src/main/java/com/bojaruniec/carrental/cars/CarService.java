@@ -24,6 +24,10 @@ public class CarService {
         return carRepository.findAll();
     }
 
+    public List<Car> getListOfCarsBySpecification(long specId) {
+        return carRepository.findAllBySpecificationId(specId);
+    }
+
     public Car addCarWithSpecification(CarDto carDto) {
 
         Car carToAdd = new Car();
@@ -46,4 +50,6 @@ public class CarService {
     public void deleteCar(long id) {
         carRepository.deleteById(id);
     }
+
+
 }

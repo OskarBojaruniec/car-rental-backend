@@ -1,15 +1,13 @@
 package com.bojaruniec.carrental.rents;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class RentController {
 
     private final RentService rentService;
@@ -18,6 +16,11 @@ public class RentController {
     @GetMapping("/rents")
     public List<Rent> getListOfRents() {
         return rentService.getListOfRents();
+    }
+
+    @GetMapping("/rents/cars/{id}")
+    public List<Rent> getListOfRentsByCarSpecificationId(@PathVariable("id") long specId) {
+        return rentService.getListOfRentsByCarSpecificationId(specId);
     }
 
     @PostMapping("/rents")

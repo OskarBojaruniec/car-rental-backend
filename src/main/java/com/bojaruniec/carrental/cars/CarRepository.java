@@ -14,4 +14,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @NonNull
     @Query("select distinct c from Car c join fetch c.specification")
     List<Car> findAll();
+
+    List<Car> findAllBySpecificationId(long id);
 }
