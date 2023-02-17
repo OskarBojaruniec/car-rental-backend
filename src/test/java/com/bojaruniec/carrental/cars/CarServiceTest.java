@@ -5,9 +5,6 @@ import com.bojaruniec.carrental.cars.exceptions.CarNotFoundException;
 import com.bojaruniec.carrental.cars.specifications.SpecificationOfCar;
 import com.bojaruniec.carrental.cars.specifications.SpecificationService;
 
-
-import com.bojaruniec.carrental.images.Image;
-import com.bojaruniec.carrental.images.ImageService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,9 +30,6 @@ class CarServiceTest {
     @Mock
     private SpecificationService specificationService;
 
-    @Mock
-    private ImageService imageService;
-
     @InjectMocks
     private CarService carService;
 
@@ -44,14 +38,14 @@ class CarServiceTest {
     void canGetSingleCar() {
         // given
         long id = anyLong();
-        SpecificationOfCar specification = new SpecificationOfCar("brand",
-                "model",
-                120.0,
-                90.0,
-                5,
+        SpecificationOfCar specification = new SpecificationOfCar("",
+                "",
+                0.0,
+                0.0,
+                0,
                 null);
 
-        Car car = new Car("plates", specification);
+        Car car = new Car("", specification);
         when(carRepository.findById(id)).thenReturn(Optional.of(car));
         // when
         carService.getSingleCar(id);
@@ -83,12 +77,12 @@ class CarServiceTest {
         // given
         long id = 1;
         CarDto carWithSpecificationId =
-                new CarDto("plates", id);
-        SpecificationOfCar specification = new SpecificationOfCar("brand",
-                "model",
-                120.0,
-                90.0,
-                5,
+                new CarDto("", id);
+        SpecificationOfCar specification = new SpecificationOfCar("",
+                "",
+                0.0,
+                0.0,
+                0,
                 null);
 
         when(specificationService.getSpecification(id)).thenReturn(Optional.of(specification));
@@ -105,15 +99,14 @@ class CarServiceTest {
     void shouldAddNewCarWhenOnlySpecificationIsGiven() {
         // given
         long id = anyLong();
-        Image image = new Image(" ", new byte[' ']);
-        SpecificationOfCar specification = new SpecificationOfCar("brand",
-                "model",
-                120.0,
-                90.0,
-                5,
-                image);
+        SpecificationOfCar specification = new SpecificationOfCar("",
+                "",
+                0.0,
+                0.0,
+                0,
+                null);
         CarDto carWithSpecification =
-                new CarDto("plates", specification);
+                new CarDto("", specification);
         // when
         carService.addCarWithSpecification(carWithSpecification);
         // then

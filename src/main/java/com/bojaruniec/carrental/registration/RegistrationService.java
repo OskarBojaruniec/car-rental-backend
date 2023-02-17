@@ -1,10 +1,12 @@
 package com.bojaruniec.carrental.registration;
 
+import com.bojaruniec.carrental.config.PasswordEncoder;
 import com.bojaruniec.carrental.users.User;
 import com.bojaruniec.carrental.users.UserRepository;
 import com.bojaruniec.carrental.users.UserService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +16,7 @@ public class RegistrationService {
     private final UserService userService;
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
     public User registerNewUser(Registration registration) {
 
         boolean isEmailOccupied = userRepository
@@ -24,7 +27,7 @@ public class RegistrationService {
 
         return userService.addUser(new User(
                 registration.getEmail(),
-                registration.getPassword(),
+                passwordEncoder.bCryptPasswordEncoder().encode(registration.getPassword()),
                 registration.getName(),
                 registration.getSurname()
         ));

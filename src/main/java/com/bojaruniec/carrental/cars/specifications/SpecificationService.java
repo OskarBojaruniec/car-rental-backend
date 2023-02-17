@@ -18,7 +18,7 @@ public class SpecificationService {
     private final ImageService imageService;
 
 
-
+    // cachce
     public Optional<SpecificationOfCar> getSpecification(long id) {
         return specificationRepository.findById(id);
     }
@@ -26,7 +26,7 @@ public class SpecificationService {
     public SpecificationOfCar addSpecification(SpecificationOfCar specification) {
         return specificationRepository.save(specification);
     }
-
+    // cache
     public List<SpecificationOfCar> getListOfSpecification() {
         return specificationRepository.findAll();
     }

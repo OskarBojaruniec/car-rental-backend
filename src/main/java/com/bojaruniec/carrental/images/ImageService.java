@@ -18,6 +18,8 @@ public class ImageService {
 
     private final ImageRepository imageRepository;
 
+
+    // cache
     public Image getImage(long id) throws IOException, DataFormatException {
 
         Optional<Image> retrievedImage = imageRepository.findById(id);
@@ -76,6 +78,7 @@ public class ImageService {
         return outputStream.toByteArray();
     }
 
+    // cache
     public List<Image> getListOfImages() throws DataFormatException, IOException {
 
         List<Image> listOfImages =  imageRepository.findAll();
