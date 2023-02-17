@@ -3,6 +3,7 @@ package com.bojaruniec.carrental.cars;
 import com.bojaruniec.carrental.cars.exceptions.CarNotFoundException;
 import com.bojaruniec.carrental.cars.specifications.SpecificationService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,14 +17,17 @@ public class CarService {
 
     private final SpecificationService specificationService;
 
+    // cache
     public Car getSingleCar(long id) {
         return carRepository.findById(id).orElseThrow(() -> new CarNotFoundException(id));
     }
 
+    // cache
     public List<Car> getListOfCars() {
         return carRepository.findAll();
     }
 
+    // cache
     public List<Car> getListOfCarsBySpecification(long specId) {
         return carRepository.findAllBySpecificationId(specId);
     }

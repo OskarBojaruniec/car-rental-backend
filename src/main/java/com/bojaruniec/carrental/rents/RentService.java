@@ -4,6 +4,8 @@ import com.bojaruniec.carrental.cars.Car;
 import com.bojaruniec.carrental.cars.CarService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,10 +22,9 @@ public class RentService {
 
     public Rent addRent(RentDto rentDto) {
 
-        Car car = findAnyAvailableCar(rentDto).orElseThrow();
 
         Rent rent = new Rent();
-        rent.setCar(car);
+        rent.setCar(carService.getSingleCar(rentDto.getCarId()));
         rent.setUserId(rentDto.getUserId());
         rent.setDateOfRent(rentDto.getDateOfRent());
         rent.setDateOfReturn(rentDto.getDateOfReturn());
@@ -39,15 +40,22 @@ public class RentService {
         return rentRepository.findAllByCarSpecificationId(specId);
     }
 
-    public Optional<Car> findAnyAvailableCar(RentDto rentDto) {
+    public ResponseEntity<Car> findAnyAvailableCar(RentDto rentDto) {
 
         List<Car> carsInRent = getCarsInGivenTime(rentDto);
         List<Car> allCarsWithGivenSpecification = carService.getListOfCarsBySpecification(rentDto.getSpecId());
 
-        return allCarsWithGivenSpecification
+        Optional<Car> availableCar = allCarsWithGivenSpecification
                 .stream()
                 .filter(car -> !carsInRent.contains(car))
                 .findFirst();
+
+        if (availableCar.isPresent()) {
+            Car car = availableCar.orElseThrow();
+            return new ResponseEntity<>(car, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     private List<Car> getCarsInGivenTime(RentDto rentDto) {
@@ -92,6 +100,10 @@ public class RentService {
                 .filter(rent -> rent.getDateOfRent().toLocalDate().minusMonths(1).isBefore(rentDto.getDateOfRent().toLocalDate()))
                 .toList();
 
+    }
+
+    public void delete(long id) {
+        rentRepository.delete(rentRepository.findById(id).orElseThrow());
     }
 }
 
