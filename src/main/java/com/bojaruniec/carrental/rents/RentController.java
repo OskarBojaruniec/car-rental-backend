@@ -31,7 +31,7 @@ public class RentController {
     }
 
     @PostMapping("/rents/check")
-    public ResponseEntity<Car> checkAvailability (@RequestBody RentDto rentDto) {
+    public Car checkAvailability (@RequestBody RentDto rentDto) {
         return rentService.findAnyAvailableCar(rentDto);
     }
 

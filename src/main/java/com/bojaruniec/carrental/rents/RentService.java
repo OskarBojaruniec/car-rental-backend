@@ -4,8 +4,6 @@ import com.bojaruniec.carrental.cars.Car;
 import com.bojaruniec.carrental.cars.CarService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -40,7 +38,7 @@ public class RentService {
         return rentRepository.findAllByCarSpecificationId(specId);
     }
 
-    public ResponseEntity<Car> findAnyAvailableCar(RentDto rentDto) {
+    public Car findAnyAvailableCar(RentDto rentDto) { // czas w jakim chcemy wynając , aktualne wynajmy , auta jakie są , znajdź w danym casie auto
 
         List<Car> carsInRent = getCarsInGivenTime(rentDto);
         List<Car> allCarsWithGivenSpecification = carService.getListOfCarsBySpecification(rentDto.getSpecId());
@@ -50,12 +48,7 @@ public class RentService {
                 .filter(car -> !carsInRent.contains(car))
                 .findFirst();
 
-        if (availableCar.isPresent()) {
-            Car car = availableCar.orElseThrow();
-            return new ResponseEntity<>(car, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return availableCar.orElseThrow();
     }
 
     private List<Car> getCarsInGivenTime(RentDto rentDto) {
@@ -75,7 +68,7 @@ public class RentService {
                         rent.getCar().getLicensePlate(),
                         rent.getCar().getSpecification());
 
-                assert false;
+
                 carsInRangeOfGivenTime.add(car);
             }
         }
