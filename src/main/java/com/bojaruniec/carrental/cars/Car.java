@@ -40,6 +40,7 @@ public class Car {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Car car)) return false;
+
         return getId() == car.getId() && getLicensePlate().equals(car.getLicensePlate()) && getSpecification().equals(car.getSpecification());
     }
 
