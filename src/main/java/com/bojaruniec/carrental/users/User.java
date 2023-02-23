@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
@@ -25,10 +26,13 @@ public class User {
     private String name;
     private String surname;
 
-    public User(String email, String password, String name, String surname) {
+    private UserRole roles;
+
+    public User(String email, String password, String name, String surname, UserRole role) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.surname = surname;
+        this.roles = role;
     }
 }

@@ -10,7 +10,7 @@ import java.util.zip.DataFormatException;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class ImageController {
 
     private final ImageService imageService;

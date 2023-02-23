@@ -1,3 +1,4 @@
+
 package com.bojaruniec.carrental.rents;
 
 
@@ -22,7 +23,6 @@ import java.util.NoSuchElementException;
 
 
 import static org.mockito.Mockito.*;
-
 
 @ExtendWith(MockitoExtension.class)
 class RentServiceTest {
@@ -127,3 +127,4 @@ class RentServiceTest {
 
 
 }
+
