@@ -3,10 +3,11 @@ package com.bojaruniec.carrental.registration;
 import com.bojaruniec.carrental.config.PasswordEncoder;
 import com.bojaruniec.carrental.users.User;
 import com.bojaruniec.carrental.users.UserRepository;
+import com.bojaruniec.carrental.users.UserRole;
 import com.bojaruniec.carrental.users.UserService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,7 +30,8 @@ public class RegistrationService {
                 registration.getEmail(),
                 passwordEncoder.bCryptPasswordEncoder().encode(registration.getPassword()),
                 registration.getName(),
-                registration.getSurname()
+                registration.getSurname(),
+                UserRole.USER
         ));
     }
 }
