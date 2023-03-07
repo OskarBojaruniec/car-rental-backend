@@ -40,11 +40,16 @@ public class SecurityConfig {
                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/register").permitAll()
+                .antMatchers( HttpMethod.GET, "/specifications").permitAll()
+                .antMatchers( HttpMethod.GET, "/specifications/**").permitAll()
+                .antMatchers("/images").permitAll()
+                .antMatchers(HttpMethod.POST, "/rents/check").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic()
+                .and()
                 .build();
     }
 
