@@ -24,6 +24,7 @@ public class ImageController {
     public Image getImage(@PathVariable("id") long id) throws DataFormatException, IOException {
         return imageService.getImage(id);
     }
+
     @GetMapping("/images")
     public List<Image> getListOfImages() throws DataFormatException, IOException {
         return imageService.getListOfImages();

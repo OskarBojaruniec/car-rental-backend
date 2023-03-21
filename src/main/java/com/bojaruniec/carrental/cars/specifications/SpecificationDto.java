@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.Null;
-
 
 @Data
 @Getter

@@ -27,11 +27,10 @@ public class ImageService {
         if (retrievedImage.isPresent()) {
             return new Image(retrievedImage.get().getId(), retrievedImage.get().getName(),
                     decompressBytes(retrievedImage.get().getImageByte()));
-        }
-        else return null;
+        } else return null;
     }
 
-    public Image addImage(MultipartFile imageFile)  {
+    public Image addImage(MultipartFile imageFile) {
 
         Image image;
         try {
@@ -81,8 +80,8 @@ public class ImageService {
     // cache
     public List<Image> getListOfImages() throws DataFormatException, IOException {
 
-        List<Image> listOfImages =  imageRepository.findAll();
-        for (Image image: listOfImages) {
+        List<Image> listOfImages = imageRepository.findAll();
+        for (Image image : listOfImages) {
             image.setImageByte(decompressBytes(image.getImageByte()));
         }
 

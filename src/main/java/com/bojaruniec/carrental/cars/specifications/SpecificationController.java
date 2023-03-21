@@ -25,16 +25,19 @@ public class SpecificationController {
     public SpecificationOfCar getSpecificationById(@PathVariable long id) {
         return specificationService.getSpecification(id).orElseThrow();
     }
+
     @PostMapping("/specifications")
     public SpecificationOfCar addSpecification(@RequestBody SpecificationOfCar specification) {
         return specificationService.addSpecification(specification);
     }
+
     @PutMapping("/specifications")
     public SpecificationOfCar updateSpecification(@RequestBody SpecificationDto specificationDto) throws DataFormatException, IOException {
         return specificationService.updateSpecification(specificationDto);
     }
+
     @DeleteMapping("/specifications/{id}")
-    public void deleteSpecification(@PathVariable long id){
+    public void deleteSpecification(@PathVariable long id) {
         specificationService.deleteSpecification(id);
     }
 }

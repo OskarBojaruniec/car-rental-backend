@@ -1,10 +1,7 @@
 package com.bojaruniec.carrental.cars;
 
 import com.bojaruniec.carrental.cars.specifications.SpecificationOfCar;
-
-
 import lombok.*;
-
 
 import javax.persistence.*;
 import java.util.Objects;

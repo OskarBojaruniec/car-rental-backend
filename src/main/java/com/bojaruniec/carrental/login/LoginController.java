@@ -1,7 +1,11 @@
 package com.bojaruniec.carrental.login;
 
+import com.bojaruniec.carrental.users.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -11,8 +15,8 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "";
+    @PostMapping("/login")
+    public UserDto login(@RequestBody Login login) {
+        return loginService.getUser(login);
     }
 }
