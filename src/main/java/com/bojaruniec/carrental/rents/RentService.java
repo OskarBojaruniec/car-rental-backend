@@ -3,8 +3,6 @@ package com.bojaruniec.carrental.rents;
 import com.bojaruniec.carrental.cars.Car;
 import com.bojaruniec.carrental.cars.CarService;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -37,6 +35,10 @@ public class RentService {
 
     public List<Rent> getListOfRentsByCarSpecificationId(long specId) {
         return rentRepository.findAllByCarSpecificationId(specId);
+    }
+
+    public List<Rent> getListOfRentsByUserId(long id) {
+        return rentRepository.findAllByUserId(id);
     }
 
     public Car findAnyAvailableCar(RentDto rentDto) { // czas w jakim chcemy wynając , aktualne wynajmy , auta jakie są , znajdź w danym casie auto

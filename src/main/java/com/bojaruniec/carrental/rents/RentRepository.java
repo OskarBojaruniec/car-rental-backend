@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface RentRepository extends JpaRepository<Rent, Long> {
     List<Rent> findAllByCarSpecificationId(long carSpecId);
+
+    List<Rent> findAllByUserId(long id);
 }

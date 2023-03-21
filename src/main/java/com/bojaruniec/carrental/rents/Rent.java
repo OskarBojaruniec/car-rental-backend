@@ -1,7 +1,6 @@
 package com.bojaruniec.carrental.rents;
 
 import com.bojaruniec.carrental.cars.Car;
-import com.bojaruniec.carrental.users.User;
 import lombok.*;
 
 import javax.persistence.*;

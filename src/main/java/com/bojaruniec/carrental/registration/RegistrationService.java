@@ -6,8 +6,6 @@ import com.bojaruniec.carrental.users.UserRepository;
 import com.bojaruniec.carrental.users.UserRole;
 import com.bojaruniec.carrental.users.UserService;
 import lombok.RequiredArgsConstructor;
-
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +16,7 @@ public class RegistrationService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+
     public User registerNewUser(Registration registration) {
 
         boolean isEmailOccupied = userRepository

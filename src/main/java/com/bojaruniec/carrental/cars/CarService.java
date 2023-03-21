@@ -3,7 +3,6 @@ package com.bojaruniec.carrental.cars;
 import com.bojaruniec.carrental.cars.exceptions.CarNotFoundException;
 import com.bojaruniec.carrental.cars.specifications.SpecificationService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
